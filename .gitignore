@@ -1,0 +1,8 @@
+.vscodee
+.settings
+/*/target
+/target
+.classpath
+.project
+.vscode
+bin
