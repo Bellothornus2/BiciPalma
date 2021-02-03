@@ -15,6 +15,7 @@ class Anclaje {
 
     Anclaje(int bicicletaId) {
         this.bici = new Bicicleta(bicicletaId);
+        this.ocupado = true;
     }
 
     boolean isOcupado() {

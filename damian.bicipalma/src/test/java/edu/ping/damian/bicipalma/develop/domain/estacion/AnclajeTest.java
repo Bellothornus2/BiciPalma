@@ -1,5 +1,6 @@
 package edu.ping.damian.bicipalma.develop.domain.estacion;
 
+import edu.ping.damian.bicipalma.develop.domain.bicicleta.Bicicleta;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -16,7 +17,27 @@ public class AnclajeTest {
     }
 
     @Test
-    public void getAnclajeId(){
+    public void getBiciIdTest(){
         assertEquals(1, this.anclaje.getBici().getId());
+    }
+
+    @Test
+    public void getOcupadoTest(){
+        assertEquals(true, this.anclaje.isOcupado());
+    }
+
+    @Test
+    public void liberarBiciTest(){
+        this.anclaje.liberarBici();
+        assertEquals(false, this.anclaje.isOcupado());
+        assertEquals(null, this.anclaje.getBici());
+    }
+
+    @Test
+    public void anclarBiciTest(){
+        Bicicleta bicicleta = new Bicicleta(1);
+        this.anclaje.anclarBici(bicicleta);
+        assertEquals(bicicleta, this.anclaje.getBici());
+        assertEquals(true, this.anclaje.isOcupado());
     }
 }
