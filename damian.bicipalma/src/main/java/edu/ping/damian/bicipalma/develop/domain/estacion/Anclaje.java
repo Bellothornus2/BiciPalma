@@ -13,7 +13,10 @@ class Anclaje {
     Una variable puede tener a su izquierda algo superior de lo que tiene a su derecha
     */
     Anclaje() {
-        
+        /*
+        Constructor vacío para la clase Anclaje para utilizar
+        los vlaores por defecto declarados en la clase
+        */
     }
 
     Anclaje(int bicicletaId) {
