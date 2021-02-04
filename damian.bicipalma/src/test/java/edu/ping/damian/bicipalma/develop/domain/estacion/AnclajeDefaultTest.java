@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AnclajeTest {
+public class AnclajeDefaultTest {
     private Anclaje anclaje = null;
 
     @Before
