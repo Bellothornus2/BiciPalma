@@ -12,18 +12,23 @@ public class AnclajeTest {
 
     @Before
     public void setupAnclaje(){
-        this.anclaje = new Anclaje(1);
+        this.anclaje = new Anclaje();
         assertNotNull(anclaje);
     }
 
     @Test
     public void getBiciIdTest(){
-        assertEquals(1, this.anclaje.getBici().getId());
+        if (this.anclaje.getBici() == null){
+            assertEquals(null, this.anclaje.getBici());
+        } else{
+            assertEquals(1, this.anclaje.getBici().getId());
+        }
+        
     }
 
     @Test
     public void getOcupadoTest(){
-        assertEquals(true, this.anclaje.isOcupado());
+        assertEquals(false, this.anclaje.isOcupado());
     }
 
     @Test

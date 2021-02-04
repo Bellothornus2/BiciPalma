@@ -12,6 +12,9 @@ class Anclaje {
     private Movil bici = new Bicileta(1); 
     Una variable puede tener a su izquierda algo superior de lo que tiene a su derecha
     */
+    Anclaje() {
+        
+    }
 
     Anclaje(int bicicletaId) {
         this.bici = new Bicicleta(bicicletaId);

@@ -20,9 +20,9 @@ class Anclajes {
     }
 
     private void crearAnclajes() {
-      for (int i = 0; i < anclajes.length; i++) {
-        this.anclajes[i] = new Anclaje(i);
-      }
+		for (int i = 0; i < anclajes.length; i++) {
+			this.anclajes[i] = new Anclaje(i);
+		}
     }
     
     Anclaje[] anclajes() {
