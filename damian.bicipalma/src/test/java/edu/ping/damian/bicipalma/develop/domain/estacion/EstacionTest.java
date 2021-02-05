@@ -1,9 +1,8 @@
 package edu.ping.damian.bicipalma.develop.domain.estacion;
 
-import java.io.ByteArrayOutputStream; // recoge el system out print
-import java.io.PrintStream; //lo transforma en algo legible
+import java.io.ByteArrayOutputStream; // recoge mucha mierda
+import java.io.PrintStream; //de la mucha mierda recoge los System.out.print (y similares)
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,21 +13,15 @@ public class EstacionTest {
 	private String direccion;
     private int numAnclajes;
     private Estacion estacion;
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
+        
     
     @Before
     public void setupEstacion(){
-        System.setOut(new PrintStream(outContent));
+        
         this.id = 1;
         this.direccion = "direccion de prueba";
         this.numAnclajes = 5;
         this.estacion = new Estacion(this.id, this.direccion, this.numAnclajes);
-    }
-    
-    @After
-    public void restoreStreams() {
-        System.setOut(originalOut);
     }
 
     @Test
@@ -42,7 +35,21 @@ public class EstacionTest {
 
     @Test
     public void consultarEstacionTest(){
-        System.out.print(this.estacion);
-        Assert.assertEquals(this.outContent.toString(), this.estacion);
+        PrintStream originalOut = System.out;
+        //Redirige la salida estándar de los System.out al original(como debe ser)
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        //Y esto captura todo el Output y lo transforma en un array de bytes
+        //que despues podemos invocar tal cual o convertirlo en String
+        System.setOut(new PrintStream(outContent));
+        //Y con esto redirigimos el output a un PrintStream que hemos declarado antes
+        this.estacion.consultarEstacion();
+        //Aquí invoco el System.out.println que quiero comprobar y lo capturo
+        Assert.assertEquals(outContent.toString().trim(), this.estacion.toString());
+        //aquí invoco una lo que he capturado del consultarEstacion y lo comparo
+        //con "this.estacion.toString" necesitaba el trim porque 
+        //daba espacios y salto de línia inseperados
+        System.setOut(originalOut);
+        //Aquí vuelvo a redirigir el output estándar al original que sería la consola
+        //o lo que java haya decidido por defecto
     }
 }
