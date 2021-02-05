@@ -52,4 +52,9 @@ public class EstacionTest {
         //Aquí vuelvo a redirigir el output estándar al original que sería la consola
         //o lo que java haya decidido por defecto
     }
+
+    @Test
+    public void anclajesLibresTest(){
+        Assert.assertEquals(0,estacion.anclajesLibres());
+    }
 }
