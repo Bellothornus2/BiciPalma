@@ -7,3 +7,4 @@
 .vscode
 bin
 workspace.code-workspace
+.workspace.code-workspace
