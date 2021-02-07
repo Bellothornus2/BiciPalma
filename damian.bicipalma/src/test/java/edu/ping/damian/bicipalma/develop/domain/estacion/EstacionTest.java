@@ -54,7 +54,6 @@ public class EstacionTest {
         //con "this.estacion.toString" necesitaba el trim porque 
         //daba espacios y salto de línia inseperados
         System.setOut(originalOut);
-        this.estacion.anclajesLibres()
         //Aquí vuelvo a redirigir el output estándar al original que sería la consola
         //o lo que java haya decidido por defecto
     }
