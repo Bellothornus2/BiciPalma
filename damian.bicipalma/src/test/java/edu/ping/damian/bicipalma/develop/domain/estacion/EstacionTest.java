@@ -7,6 +7,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.ping.damian.bicipalma.develop.domain.bicicleta.Bicicleta;
+import edu.ping.damian.bicipalma.develop.domain.bicicleta.Movil;
+import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.Autenticacion;
+import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.TarjetaUsuario;
+
 public class EstacionTest {
 
     private int id;
@@ -49,12 +54,27 @@ public class EstacionTest {
         //con "this.estacion.toString" necesitaba el trim porque 
         //daba espacios y salto de línia inseperados
         System.setOut(originalOut);
+        this.estacion.anclajesLibres()
         //Aquí vuelvo a redirigir el output estándar al original que sería la consola
         //o lo que java haya decidido por defecto
     }
-
     @Test
     public void anclajesLibresTest(){
         Assert.assertEquals(0,estacion.anclajesLibres());
+    }
+    @Test
+    public void retirarBicicleta(){
+        Autenticacion tarjetaUsuario = new TarjetaUsuario("hoasdasdasd", true);
+        this.estacion.retirarBicicleta(tarjetaUsuario);
+        Assert.assertEquals(1, this.estacion.anclajesLibres());
+    }
+    @Test
+    public void anclarBicicletaTest(){
+        Autenticacion tarjetaUsuario = new TarjetaUsuario("hoasdasdasd", true);
+        Movil bicicleta = new Bicicleta(456);
+        this.estacion.retirarBicicleta(tarjetaUsuario);
+        Assert.assertEquals(1, this.estacion.anclajesLibres());
+        this.estacion.anclarBicicleta(bicicleta);
+        Assert.assertEquals(0, this.estacion.anclajesLibres());
     }
 }
