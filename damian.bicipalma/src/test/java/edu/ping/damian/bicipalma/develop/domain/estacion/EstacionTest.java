@@ -7,6 +7,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD
+=======
+import edu.ping.damian.bicipalma.develop.domain.bicicleta.Bicicleta;
+import edu.ping.damian.bicipalma.develop.domain.bicicleta.Movil;
+import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.Autenticacion;
+>>>>>>> d7d03d284189cf57240a6d2f6dc411162123ebb5
 import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.TarjetaUsuario;
 
 public class EstacionTest {
@@ -54,7 +60,6 @@ public class EstacionTest {
         //Aquí vuelvo a redirigir el output estándar al original que sería la consola
         //o lo que java haya decidido por defecto
     }
-
     @Test
     public void anclajesLibresTest(){
         Assert.assertEquals(0,this.estacion.anclajesLibres());
@@ -84,15 +89,4 @@ public class EstacionTest {
         this.estacion.retirarBicicleta(tarjetaUsuario);
         Assert.assertEquals(1, this.estacion.anclajesLibres());
     }
-
-    // @Test
-    // public void consultarAnclajesTest(){
-    //     Bicicleta bicicleta = new Bicicleta(3);
-    //     Assert.AssertEquals("Anclaje " + 0 + " " + bicicleta.get,
-    //     this.estacion.toString());
-
-    //     Assert.assertEquals("Anclaje " + 0 + " " + " libre",
-    //     this.estacion.toString());
-    // }
-
 }
