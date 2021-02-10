@@ -7,9 +7,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD
+=======
 import edu.ping.damian.bicipalma.develop.domain.bicicleta.Bicicleta;
 import edu.ping.damian.bicipalma.develop.domain.bicicleta.Movil;
 import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.Autenticacion;
+>>>>>>> d7d03d284189cf57240a6d2f6dc411162123ebb5
 import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.TarjetaUsuario;
 
 public class EstacionTest {
@@ -59,14 +62,9 @@ public class EstacionTest {
     }
     @Test
     public void anclajesLibresTest(){
-        Assert.assertEquals(0,estacion.anclajesLibres());
+        Assert.assertEquals(0,this.estacion.anclajesLibres());
     }
-    @Test
-    public void retirarBicicleta(){
-        Autenticacion tarjetaUsuario = new TarjetaUsuario("hoasdasdasd", true);
-        this.estacion.retirarBicicleta(tarjetaUsuario);
-        Assert.assertEquals(1, this.estacion.anclajesLibres());
-    }
+
     @Test
     public void anclarBicicletaTest(){
         Autenticacion tarjetaUsuario = new TarjetaUsuario("hoasdasdasd", true);
@@ -75,5 +73,20 @@ public class EstacionTest {
         Assert.assertEquals(1, this.estacion.anclajesLibres());
         this.estacion.anclarBicicleta(bicicleta);
         Assert.assertEquals(0, this.estacion.anclajesLibres());
+    }
+
+
+    @Test
+    public void leerTarjetaUsuarioTest(){
+        Autenticacion tarjetaUsuario = new TarjetaUsuario("Walid", true);
+        Assert.assertEquals(true,
+        this.estacion.leerTarjetaUsuario(tarjetaUsuario));
+    }
+
+    @Test
+    public void retirarBicicleta(){
+        Autenticacion tarjetaUsuario = new TarjetaUsuario("hoasdasdasd", true);
+        this.estacion.retirarBicicleta(tarjetaUsuario);
+        Assert.assertEquals(1, this.estacion.anclajesLibres());
     }
 }
