@@ -7,6 +7,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD
+=======
+import edu.ping.damian.bicipalma.develop.domain.bicicleta.Bicicleta;
+import edu.ping.damian.bicipalma.develop.domain.bicicleta.Movil;
+import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.Autenticacion;
+>>>>>>> d7d03d284189cf57240a6d2f6dc411162123ebb5
+import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.TarjetaUsuario;
+
 public class EstacionTest {
 
     private int id;
@@ -51,5 +59,34 @@ public class EstacionTest {
         System.setOut(originalOut);
         //Aquí vuelvo a redirigir el output estándar al original que sería la consola
         //o lo que java haya decidido por defecto
+    }
+    @Test
+    public void anclajesLibresTest(){
+        Assert.assertEquals(0,this.estacion.anclajesLibres());
+    }
+
+    @Test
+    public void anclarBicicletaTest(){
+        Autenticacion tarjetaUsuario = new TarjetaUsuario("hoasdasdasd", true);
+        Movil bicicleta = new Bicicleta(456);
+        this.estacion.retirarBicicleta(tarjetaUsuario);
+        Assert.assertEquals(1, this.estacion.anclajesLibres());
+        this.estacion.anclarBicicleta(bicicleta);
+        Assert.assertEquals(0, this.estacion.anclajesLibres());
+    }
+
+
+    @Test
+    public void leerTarjetaUsuarioTest(){
+        Autenticacion tarjetaUsuario = new TarjetaUsuario("Walid", true);
+        Assert.assertEquals(true,
+        this.estacion.leerTarjetaUsuario(tarjetaUsuario));
+    }
+
+    @Test
+    public void retirarBicicleta(){
+        Autenticacion tarjetaUsuario = new TarjetaUsuario("hoasdasdasd", true);
+        this.estacion.retirarBicicleta(tarjetaUsuario);
+        Assert.assertEquals(1, this.estacion.anclajesLibres());
     }
 }
