@@ -55,10 +55,12 @@
             <archive>
               <manifest>
                 <addClasspath>true</addClasspath>
-                <classpathPrefix>domain/</classpathPrefix>
-                <mainClass>edu.ping.damian.bicipalma.develop.appalma.Bicipalma</mainClass>
+                <mainClass>edu.ping.damian.bicipalma.develop.appalma.BiciPalma</mainClass>
               </manifest>
-            </archive>
+              <manifestEntries>
+                <url>${project.url}</url>
+              </manifestEntries>
+              </archive>
           </configuration>
         </plugin>
         <plugin>
