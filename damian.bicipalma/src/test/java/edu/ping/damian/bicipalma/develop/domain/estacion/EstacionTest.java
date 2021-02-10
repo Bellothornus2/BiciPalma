@@ -7,12 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-<<<<<<< HEAD
-=======
 import edu.ping.damian.bicipalma.develop.domain.bicicleta.Bicicleta;
 import edu.ping.damian.bicipalma.develop.domain.bicicleta.Movil;
 import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.Autenticacion;
->>>>>>> d7d03d284189cf57240a6d2f6dc411162123ebb5
 import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.TarjetaUsuario;
 
 public class EstacionTest {
