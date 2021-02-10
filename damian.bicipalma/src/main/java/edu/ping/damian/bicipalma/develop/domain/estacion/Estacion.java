@@ -1,5 +1,9 @@
 package edu.ping.damian.bicipalma.develop.domain.estacion;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import edu.ping.damian.bicipalma.develop.domain.bicicleta.Movil;
 import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.Autenticacion;
 
@@ -60,19 +64,20 @@ public class Estacion {
 		System.out.println(this);
 	}
 
-	public int anclajesLibres() {
-
+	public long anclajesLibres() {
+		/*
 		int anclajesLibres = 0;
 		for (Anclaje anclaje : anclajes()) {
 			// si el registro del array es null => anclaje libre
 			anclajesLibres = anclaje.isOcupado()? anclajesLibres: ++anclajesLibres;
 		}
-		return anclajesLibres;
+		*/
+		return Arrays.stream(anclajes()).filter(a -> !a.isOcupado()).count();
 	}
 
 	public void anclarBicicleta(Movil bici) {
 		// insertar el objeto bicicleta en el primer registro libre del array
-
+		/*
 		int posicion = 0;
 		int numeroAnclaje = posicion + 1;
 
@@ -86,6 +91,13 @@ public class Estacion {
 			}
 			numeroAnclaje++;
 		}
+		*/
+		Optional<Anclaje> anclajeLibre = Arrays.stream(anclajes()).filter(a -> !a.isOcupado()).findAny();
+		if (anclajeLibre.isPresent()){
+			anclajeLibre.get().anclarBici(bici);
+		} else {
+			System.out.println("No existen anclajes disponibles para bici" + bici);
+		}
 	}
 
 	public boolean leerTarjetaUsuario(Autenticacion tarjetaUsuario) {
@@ -97,9 +109,8 @@ public class Estacion {
 		// y retiro bici => poner a null
 
 		if (leerTarjetaUsuario(tarjetaUsuario)) {
-
+			/*
 			boolean biciRetirada = false;
-
 			while (!biciRetirada) {
 
 				int posicion = anclajes.seleccionarAnclaje();
@@ -114,15 +125,31 @@ public class Estacion {
 				}
 				// generamos nuevo número de anclaje;
 			}
-
+		*/
+		String[] stringArray = { "Damian", "Ivanov", "Kotchev" }; 
+		Stream<String> stream = Arrays.stream(stringArray); 
+        // Displaying elements in Stream 
+        stream.forEach(str -> System.out.print(str + " "));
+		Optional<Anclaje> anclajeOcupado = Arrays.stream(anclajes()).filter(Anclaje::isOcupado).findAny();
+		if (anclajeOcupado.isPresent()){
+			mostrarBicicleta(anclajeOcupado.get().getBici());
+			anclajeOcupado.get().liberarBici();
+		}
 		} else {
 			System.out.println("Tarjeta de usuario inactiva :(");
 		}
+		/*
+		Los Lambdas se pueden encapsular en (parámetros) -> {Expresión}
+		para poder ejecutar bloques de código en una sola línia si hace falta.
+		Ahora lo entiendo, los parámetros no son mas que una abreviación o nombre para los valores
+		que nos pasa el stream o el forEach de Array o cualquier función que implique iteración
+		y la expresión es qu ees lo que hacemos con esos parámetros.
+		*/ 
 	}
 
-	private void mostrarBicicleta(Movil bicicleta, int numeroAnclaje) {
+	private void mostrarBicicleta(Movil bicicleta /*, int numeroAnclaje*/) {
 		System.out.println("bicicleta retirada: " + bicicleta.getId() 
-							+ " del anclaje: " + numeroAnclaje);
+							/*+ " del anclaje: " + numeroAnclaje*/);
 	}
 
 	private void mostrarAnclaje(Movil bicicleta, int numeroAnclaje) {
@@ -133,7 +160,7 @@ public class Estacion {
 	public void consultarAnclajes() {
 		// Recorre el array anclajes y 
 		// Muestra si está libre o el id de la bici anclada 
-
+		/*
 		int posicion = 0;
 		int numeroAnclaje = 0;
 
@@ -146,5 +173,8 @@ public class Estacion {
 			}
 			posicion++;
 		}
+		*/
+		Arrays.stream(anclajes()).map(a -> Optional.ofNullable(a.getBici()))
+			.forEach(bici -> System.out.print("Anclaje "+ (bici.isPresent()? bici.get(): "libre") + "\n"));
 	}
 }
