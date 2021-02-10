@@ -7,12 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-<<<<<<< HEAD
-=======
 import edu.ping.damian.bicipalma.develop.domain.bicicleta.Bicicleta;
 import edu.ping.damian.bicipalma.develop.domain.bicicleta.Movil;
 import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.Autenticacion;
->>>>>>> d7d03d284189cf57240a6d2f6dc411162123ebb5
 import edu.ping.damian.bicipalma.develop.domain.tarjetausuario.TarjetaUsuario;
 
 public class EstacionTest {
@@ -34,10 +31,16 @@ public class EstacionTest {
 
     @Test
     public void toStringTest(){
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("id: 1\n");
+        stringBuffer.append("direccion: direccion de prueba\n");
+        stringBuffer.append("numeroAnclajes: 5");
         Assert.assertEquals(
-        "id: " + 1 + '\n' +
+        /*"id: " + 1 + '\n' +
         "direccion: " + "direccion de prueba" + '\n' +
         "numeroAnclajes: " + 5,
+        */
+        stringBuffer.toString(),
         this.estacion.toString());
     }
 
