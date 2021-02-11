@@ -1,5 +1,9 @@
 package edu.ping.damian.bicipalma.develop.domain.estacion;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
 import java.io.ByteArrayOutputStream; // recoge mucha mierda
 import java.io.PrintStream; //de la mucha mierda recoge los System.out.print (y similares)
 
@@ -85,5 +89,24 @@ public class EstacionTest {
         Autenticacion tarjetaUsuario = new TarjetaUsuario("hoasdasdasd", true);
         this.estacion.retirarBicicleta(tarjetaUsuario);
         Assert.assertEquals(1, this.estacion.anclajesLibres());
+    }
+    @Test
+    //TODO: No funca
+    public void consultarAnclajeTest(){
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream contentOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(contentOut));
+        this.estacion.consultarAnclajes();
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("Anclaje 1 0\n");
+        stringBuffer.append("Anclaje 2 1\n");
+        stringBuffer.append("Anclaje 3 2\n");
+        stringBuffer.append("Anclaje 4 3\n\n");
+        stringBuffer.append("Anclaje 5 4");
+        assertEquals(stringBuffer.toString(), contentOut.toString().trim());
+        assertTrue(stringBuffer.toString().equals(contentOut.toString().trim()));
+        System.setOut(originalOut);
+        System.out.print(stringBuffer.toString().trim().equals(contentOut.toString().trim()));
+        
     }
 }
